@@ -1,25 +1,29 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="http://maratona.fullcycle.com.br/public/img/logo-maratona.png"/></a>
-</p>
+  <a href="https://laravel.com" target="blank"><img src="https://laravel.com/img/logomark.min.svg"/></a>
+  </br>
+  <a href="https://laravel.com" target="blank"><img src="https://laravel.com/img/logotype.min.svg"/></a>
+</br>
 
 ## Descrição
 
-Microsserviço de catálogo
+Microsserviço de catálogo de vídeos, desenvolvido utilizando a linguagem PHP com o framework Laravel.
 
-## Rodar a aplicação
+## Inicializando a aplicação
 
-#### Crie os containers com Docker
+#### Inicializando os containers
+
+> :warning: É necessário ter o `docker` e `docker-compose` devidamente instalados e configurados no ambiente.
 
 ```bash
-$ docker-compose up
+$ docker-compose up -d
 ```
 
 #### Accesse no browser
-
 ```
 http://localhost:8000
 ```
 
-## Apéndice
-
-Nosso aluno [Yuri Koster](https://github.com/yurikoster1) criou outra opção do repositório organizando melhor os arquivos Docker, se quiserem utilizar basta clonar o branch ```more_organized```.
+#### Parando os containers
+```bash
+$ docker-compose down
+```
