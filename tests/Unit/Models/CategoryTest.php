@@ -48,9 +48,7 @@ class CategoryTest extends TestCase
     {
         $expected = ['deleted_at', 'created_at', 'updated_at'];
         $actual = $this->subject->getDates();
-        foreach ($expected as $current) {
-            $this->assertContains($current, $actual);
-        }
+        $this->assertEqualsCanonicalizing($expected, $actual);
         $this->assertCount(count($expected), $actual);
     }
 }
