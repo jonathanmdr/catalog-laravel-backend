@@ -36,13 +36,7 @@ class GenreTest extends TestCase
         $actual->refresh();
         $this->assertTrue(RamseyUuid::isValid($actual->id));
         $this->assertEquals('My Genre Test', $actual->name);
-        $this->assertNull($actual->description);
         $this->assertTrue($actual->is_active);
-
-        $actual = Genre::create([
-            'name' => 'My Genre Test',
-        ]);
-        $this->assertNull($actual->description);
 
         $actual = Genre::create([
             'name' => 'My Genre Test',
