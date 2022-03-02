@@ -10,7 +10,7 @@ class CategoryTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testListAll()
+    public function testList()
     {
         factory(Category::class, 1)->create();
         $categories = Category::all();
@@ -27,4 +27,41 @@ class CategoryTest extends TestCase
         $this->assertEqualsCanonicalizing($expected, $actual);
         $this->assertCount(1, $categories);
     }
+
+    public function testCreate()
+    {
+        $actual = Category::create([
+            'name' => 'My Category Test'
+        ]);
+        $actual->refresh();
+        $this->assertEquals('My Category Test', $actual->name);
+        $this->assertNull($actual->description);
+        $this->assertTrue($actual->is_active);
+
+        $actual = Category::create([
+            'name' => 'My Category Test',
+            'description' => null
+        ]);
+        $this->assertNull($actual->description);
+
+        $actual = Category::create([
+            'name' => 'My Category Test',
+            'description' => 'My Description Test'
+        ]);
+        $this->assertEquals('My Description Test', $actual->description);
+
+        $actual = Category::create([
+            'name' => 'My Category Test',
+            'is_active' => false
+        ]);
+        $this->assertFalse($actual->is_active);
+
+        $actual = Category::create([
+            'name' => 'My Category Test',
+            'is_active' => true
+        ]);
+        $this->assertTrue($actual->is_active);
+    }
+
+    
 }
