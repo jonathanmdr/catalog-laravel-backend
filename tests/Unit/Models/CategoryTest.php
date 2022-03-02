@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Models;
 
 use App\Models\Traits\Uuid;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,6 +9,14 @@ use PHPUnit\Framework\TestCase;
 
 class CategoryTest extends TestCase
 {
+    private $subject;
+
+    protected function setup(): void
+    {
+        parent::setUp();
+        $this->subject = new Category();
+    }
+
     public function testIfUsingTraits()
     {
         $expected = [
@@ -21,29 +29,25 @@ class CategoryTest extends TestCase
 
     public function testFillableAttribute()
     {
-        $category = new Category();
         $expected = ['name', 'description', 'is_active'];
-        $this->assertEquals($expected, $category->getFillable());
+        $this->assertEquals($expected, $this->subject->getFillable());
     }
 
     public function testCastsAttribute()
     {
-        $category = new Category();
         $expected = ['id' => 'string'];
-        $this->assertEquals($expected, $category->getCasts());
+        $this->assertEquals($expected, $this->subject->getCasts());
     }
 
     public function testIncrementingAttribute()
     {
-        $category = new Category();
-        $this->assertFalse($category->incrementing);
+        $this->assertFalse($this->subject->incrementing);
     }
 
     public function testDatesAttribute()
     {
-        $category = new Category();
         $expected = ['deleted_at', 'created_at', 'updated_at'];
-        $actual = $category->getDates();
+        $actual = $this->subject->getDates();
         foreach ($expected as $current) {
             $this->assertContains($current, $actual);
         }
